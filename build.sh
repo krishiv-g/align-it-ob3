@@ -9,7 +9,7 @@ log() {
 }
 
 # Variables
-OPENBABEL_DIR="openbabel-openbabel-3-1-1"
+OPENBABEL_DIR="/openbabel/openbabel-openbabel-3-1-1"
 INSTALL_PREFIX="/usr/local"
 
 # Install necessary packages
@@ -27,15 +27,16 @@ apt-get update && apt-get install -y \
     libxml2-dev \
     libboost-all-dev \
     libssl-dev \
+    openbable \
     libbz2-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Build and install OpenBabel
 log "Building and installing OpenBabel..."
-mkdir -p /${OPENBABEL_DIR}/build
-cd /${OPENBABEL_DIR}/build
-cmake .. -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}
+mkdir -p /openbabel/build
+cd /openbabel/build
+cmake ${OPENBABEL_DIR} -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}
 make
 make install
 
