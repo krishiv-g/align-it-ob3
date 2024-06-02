@@ -8,6 +8,9 @@ ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
 # Copy the build script into the container
 COPY build.sh /build.sh
 
+# Copy the project files into the container
+COPY . /align-it-ob3
+
 # Make the build script executable
 RUN chmod +x /build.sh
 
