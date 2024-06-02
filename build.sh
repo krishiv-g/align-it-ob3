@@ -9,8 +9,7 @@ log() {
 }
 
 # Variables
-OPENBABEL_VERSION="3.1.1"
-OPENBABEL_URL="https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-3-1-1.tar.gz"
+OPENBABEL_DIR="openbabel-openbabel-3-1-1"
 INSTALL_PREFIX="/usr/local"
 
 # Install necessary packages
@@ -28,34 +27,23 @@ apt-get update && apt-get install -y \
     libxml2-dev \
     libboost-all-dev \
     libssl-dev \
-    openbabel \
     libbz2-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
-WORKDIR="/openbabel-${OPENBABEL_VERSION}"
-mkdir -p ${WORKDIR}
-cd ${WORKDIR}
-
-# Download and install OpenBabel
-log "Downloading OpenBabel..."
-wget ${OPENBABEL_URL} -O openbabel-${OPENBABEL_VERSION}.tar.gz
-
-log "Extracting OpenBabel..."
-tar -zxf openbabel-${OPENBABEL_VERSION}.tar.gz
-
+# Build and install OpenBabel
 log "Building and installing OpenBabel..."
-mkdir -p build
-cd build
-cmake ../openbabel-${OPENBABEL_VERSION} -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}
+mkdir -p /${OPENBABEL_DIR}/build
+cd /${OPENBABEL_DIR}/build
+cmake .. -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}
 make
 make install
 
 # Build and install align-it
 log "Building and installing align-it..."
-mkdir -p /align-it-ob3/build
-cd /align-it-ob3/build
+cd /align-it-ob3
+mkdir -p build
+cd build
 cmake -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} -DCMAKE_PREFIX_PATH=${INSTALL_PREFIX}/lib/cmake/openbabel3 ..
 make
 make install
