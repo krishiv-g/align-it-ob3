@@ -33,6 +33,11 @@ apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Set working directory
+WORKDIR="/openbabel-${OPENBABEL_VERSION}"
+mkdir -p ${WORKDIR}
+cd ${WORKDIR}
+
 # Download and install OpenBabel
 log "Downloading OpenBabel..."
 wget ${OPENBABEL_URL} -O openbabel-${OPENBABEL_VERSION}.tar.gz
@@ -41,8 +46,8 @@ log "Extracting OpenBabel..."
 tar -zxf openbabel-${OPENBABEL_VERSION}.tar.gz
 
 log "Building and installing OpenBabel..."
-mkdir -p /openbabel-${OPENBABEL_VERSION}/build
-cd /openbabel-${OPENBABEL_VERSION}/build
+mkdir -p build
+cd build
 cmake ../openbabel-${OPENBABEL_VERSION} -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}
 make
 make install
