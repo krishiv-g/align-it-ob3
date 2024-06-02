@@ -33,19 +33,7 @@ apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Download and install OpenBabel
-log "Downloading OpenBabel..."
-wget ${OPENBABEL_URL} -O openbabel-${OPENBABEL_VERSION}-source.tar.bz2
 
-log "Extracting OpenBabel..."
-tar -xjf openbabel-${OPENBABEL_VERSION}-source.tar.bz2
-
-log "Building and installing OpenBabel..."
-mkdir -p /openbabel-${OPENBABEL_VERSION}/build
-cd /openbabel-${OPENBABEL_VERSION}/build
-cmake ../openbabel-${OPENBABEL_VERSION} -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}
-make
-make install
 
 # Build and install align-it
 log "Building and installing align-it..."
