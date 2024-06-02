@@ -21,11 +21,11 @@ docker build -t openbabel-project .
 ## Run the Docker Container
 
 ```sh
-docker run -it openbabel-project tail -f /dev/null
+docker run -d --name openbabel-container openbabel-project
 ```
 
 ## TU EXEC INSIDE CONTAINER 
 
 ```sh
-docker exec -it suspicious_mayer /bin/bash
+docker exec -it openbabel-container /bin/bash
 ```
