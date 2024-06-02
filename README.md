@@ -1,28 +1,25 @@
-# align-it-ob3
 
+# OpenBabel Project Docker Setup
 
-## Description
+## Install Docker
 
-Code for align-it with openbabel3
+Follow the tutorial [here](https://docs.rockylinux.org/gemstones/containers/docker/) to install Docker on Rocky Linux.
 
+## Clone the Repository
 
-## Requirements
-
-openbabel3
-
-
-## INSTALL
-
-- following example is basic way.
-
-```
-git clone https://github.com/iwatobipen/align-it-ob3.git
+```sh
+git clone https://github.com/krishiv-g/align-it-ob3.git
 cd align-it-ob3
-mkdir biuild
-cd build
-cmake -DCMAKE_INSTALL_REFIX=<where you want to insatall> ..
-make
-make install
 ```
 
+## Build the Docker Image
 
+```sh
+docker build -t openbabel-project .
+```
+
+## Run the Docker Container
+
+```sh
+docker run -it openbabel-project tail -f /dev/null
+```
