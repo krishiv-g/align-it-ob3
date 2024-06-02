@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
 
 # Install necessary packages including CMake
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y openbabel \
     build-essential \
     cmake \
     git \
