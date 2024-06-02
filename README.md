@@ -23,3 +23,9 @@ docker build -t openbabel-project .
 ```sh
 docker run -it openbabel-project tail -f /dev/null
 ```
+
+## TU EXEC INSIDE CONTAINER 
+
+```sh
+docker exec -it suspicious_mayer /bin/bash
+```
