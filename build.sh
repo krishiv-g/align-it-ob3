@@ -10,7 +10,7 @@ log() {
 
 # Variables
 OPENBABEL_VERSION="3.1.1"
-OPENBABEL_URL="https://github.com/openbabel/openbabel/releases/download/openbabel-3-1-1/openbabel-3.1.1-source.tar.bz2"
+OPENBABEL_URL="https://github.com/openbabel/openbabel/archive/refs/tags/openbabel-3-1-1.tar.gz"
 INSTALL_PREFIX="/usr/local"
 
 # Install necessary packages
@@ -33,7 +33,19 @@ apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Download and install OpenBabel
+log "Downloading OpenBabel..."
+wget ${OPENBABEL_URL} -O openbabel-${OPENBABEL_VERSION}.tar.gz
 
+log "Extracting OpenBabel..."
+tar -zxf openbabel-${OPENBABEL_VERSION}.tar.gz
+
+log "Building and installing OpenBabel..."
+mkdir -p /openbabel-${OPENBABEL_VERSION}/build
+cd /openbabel-${OPENBABEL_VERSION}/build
+cmake ../openbabel-${OPENBABEL_VERSION} -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}
+make
+make install
 
 # Build and install align-it
 log "Building and installing align-it..."
