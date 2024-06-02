@@ -27,6 +27,8 @@ apt-get update && apt-get install -y \
     libxml2-dev \
     libboost-all-dev \
     libssl-dev \
+    make \
+    cmake \
     openbable \
     libbz2-dev \
     && apt-get clean \
