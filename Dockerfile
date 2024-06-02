@@ -5,6 +5,24 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
 
+# Install necessary packages including CMake
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    wget \
+    curl \
+    vim \
+    sudo \
+    libeigen3-dev \
+    zlib1g-dev \
+    libxml2-dev \
+    libboost-all-dev \
+    libssl-dev \
+    libbz2-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy the OpenBabel directory into the container
 COPY openbabel-openbabel-3-1-1 /openbabel/openbabel-openbabel-3-1-1
 
