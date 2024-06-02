@@ -5,10 +5,13 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
 
+# Copy the OpenBabel directory into the container
+COPY openbabel-openbabel-3-1-1 /openbabel/openbabel-openbabel-3-1-1
+
 # Copy the build script into the container
 COPY build.sh /build.sh
 
-# Copy the project files into the container
+# Copy the remaining project files into the container
 COPY . /align-it-ob3
 
 # Make the build script executable
